@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1or0 Grub Demo - Code for Junk Food!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'cute': ['Fredoka', 'sans-serif']
+                    },
+                    colors: {
+                        'junk-orange': '#FF6B35',
+                        'junk-yellow': '#FFD23F',
+                        'junk-red': '#FF4B4B',
+                        'junk-green': '#4CAF50',
+                        'reg-bg': '#F6E6FF'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-cute">
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="px-4">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <img src="Black_And_White_Illustrative_Kids_Club_Logo__2_-removebg-preview.png" alt="1or0 Logo" class="h-12 w-12">
+                    <span class="text-2xl font-bold text-junk-orange ml-2">1or0 Grub</span>
+                </div>
+                <div class="hidden md:block">
+                    <a href="#home" class="text-gray-700 px-3 text-lg">Home</a>
+                    <a href="#how-it-works" class="text-gray-700 px-3 text-lg">How It Works</a>
+                    <a href="#meals" class="text-gray-700 px-3 text-lg">Meals</a>
+                    <a href="#faq" class="text-gray-700 px-3 text-lg">FAQ</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-2xl">☰</button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden">
+                <a href="#home" class="block text-lg">Home</a>
+                <a href="#how-it-works" class="block text-lg">How It Works</a>
+                <a href="#meals" class="block text-lg">Meals</a>
+                <a href="#register" class="block text-lg">Register</a>
+                <a href="#faq" class="block text-lg">FAQ</a>
+            </div>
+        </div>
+    </nav>
+    <section id="home" class="bg-gradient-to-br from-junk-orange to-junk-red text-white py-24">
+        <div>
+            <div class="flex items-center justify-center mb-8">
+                <img src="flag-standalone.png" alt="Hack Club Flag" class="h-20 w-20 mr-4" style="transform: rotate(-18deg);" />
+                <h1 class="text-5xl md:text-7xl font-bold">🍕 Code for Junk Food! 🍕</h1>
+            </div>
+            <p class="text-2xl mb-4 text-center">Hey Bal Bharatians! Build websites, get junk food. Simple.</p>
+            <p class="text-xl mb-8 text-center">Presented by 1or0 Hack Club</p>
+            <div class="mt-8 flex justify-center">
+                <div data-fillout-id="tJqTm2PGcKus" data-fillout-embed-type="popup" data-fillout-button-text="Register Now" data-fillout-dynamic-resize data-fillout-button-color="#FF6900" data-fillout-button-size="large" data-fillout-inherit-parameters data-fillout-popup-size="medium"></div><script src="https://server.fillout.com/embed/v1/"></script>
+            </div>
+
+            
+        </div>
+    </section>
+    <section id="how-it-works" class="py-16 bg-white">
+        <div>
+            <h2 class="text-4xl font-bold text-center mb-4">How Does It Work?</h2>
+            <p class="text-2xl text-center mb-10">1. Make a site. 2. Show us. 3. Get food money.</p>
+            <div class="flex flex-col md:flex-row justify-center gap-8">
+                <div class="bg-gray-100 p-12 rounded-xl text-center text-2xl shadow-md mb-6 md:mb-0">💻<div class="mt-4 font-bold">Build a Website</div></div>
+                <div class="bg-gray-100 p-12 rounded-xl text-center text-2xl shadow-md mb-6 md:mb-0">🚀<div class="mt-4 font-bold">Publish & Submit</div></div>
+                <div class="bg-gray-100 p-12 rounded-xl text-center text-2xl shadow-md">🍔<div class="mt-4 font-bold">Get Junk Food!</div></div>
+            </div>
+        </div>
+    </section>
+    <section id="meals" class="py-16 bg-white">
+        <div>
+            <h2 class="text-4xl font-bold text-center mb-4">Pack Your Lunch!</h2>
+            <p class="text-2xl text-center mb-10">Pick a meal, code for it, eat it.</p>
+            <div class="flex flex-col md:flex-row justify-center gap-8">
+                <div class="border-t-4 border-junk-orange bg-white p-12 rounded-xl text-center shadow-lg hover:bg-orange-50 hover:scale-105 transition-all duration-200 cursor-pointer">
+                    <div class="text-6xl mb-4">🥪</div>
+                    <div class="font-bold text-2xl mb-2">Basic Meal</div>
+                    <div class="text-junk-orange font-bold text-xl mb-2">$6</div>
+                    <div class="mb-2 text-lg">2 features</div>
+                </div>
+                <div class="border-t-4 border-junk-yellow bg-white p-12 rounded-xl text-center shadow-lg hover:bg-yellow-50 hover:scale-105 transition-all duration-200 cursor-pointer">
+                    <div class="text-6xl mb-4">🥤</div>
+                    <div class="font-bold text-2xl mb-2">Refreshment Combo</div>
+                    <div class="text-junk-orange font-bold text-xl mb-2">$8</div>
+                    <div class="mb-2 text-lg">4 features</div>
+                </div>
+                <div class="border-t-4 border-junk-red bg-white p-12 rounded-xl text-center shadow-lg hover:bg-red-50 hover:scale-105 transition-all duration-200 cursor-pointer">
+                    <div class="text-6xl mb-4">🍟</div>
+                    <div class="font-bold text-2xl mb-2">Full Combo Meal</div>
+                    <div class="text-junk-orange font-bold text-xl mb-2">$10</div>
+                    <div class="mb-2 text-lg">6+ features</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="submit" class="py-16 bg-junk-green bg-opacity-10">
+        <div class="text-center">
+            <h2 class="text-4xl font-bold text-junk-green mb-4">Project Submission</h2>
+            <p class="text-xl mb-4">Done coding? Submit your project at the link below.<br><span class="text-junk-green font-bold">Workshop ID: 1or0G</span></p>
+            <a href="https://forms.hackclub.com/grub" target="_blank" class="inline-block bg-junk-green text-white px-10 py-4 rounded-xl font-bold text-xl shadow hover:bg-green-700 transition-all">Submit Project</a>
+        </div>
+    </section>
+    <section id="faq" class="py-16 bg-gray-50">
+        <div>
+            <h2 class="text-4xl font-bold text-center mb-4">FAQ</h2>
+            <div class="max-w-2xl mx-auto">
+                <div class="mb-6">
+                    <button class="faq-toggle w-full text-left bg-white p-8 rounded-xl text-2xl shadow hover:bg-gray-100 transition-all">What is 1or0 Hack Club? <span class="float-right text-3xl">+</span></button>
+                    <div class="faq-content hidden p-6 text-xl">1or0 Hack Club is the official Hack Club of Bal Bharati Public School Rohini (BBPSRH). Student-led. Project-driven. Built to break limits.</div>
+                </div>
+                <div class="mb-6">
+                    <button class="faq-toggle w-full text-left bg-white p-8 rounded-xl text-2xl shadow hover:bg-gray-100 transition-all">What is Tailwind CSS? <span class="float-right text-3xl">+</span></button>
+                    <div class="faq-content hidden p-6 text-xl">It's a CSS thing that makes sites look cool without writing much CSS.</div>
+                </div>
+                <div class="mb-6">
+                    <button class="faq-toggle w-full text-left bg-white p-8 rounded-xl text-2xl shadow hover:bg-gray-100 transition-all">Can I use CSS? <span class="float-right text-3xl">+</span></button>
+                    <div class="faq-content hidden p-6 text-xl">Just use Tailwind. If you really need CSS, go for it.</div>
+                </div>
+                <div class="mb-6">
+                    <button class="faq-toggle w-full text-left bg-white p-8 rounded-xl text-2xl shadow hover:bg-gray-100 transition-all">What can I buy? <span class="float-right text-3xl">+</span></button>
+                    <div class="faq-content hidden p-6 text-xl">Any junk food. Seriously.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if(mobileMenuButton) mobileMenuButton.onclick = () => { mobileMenu.classList.toggle('hidden'); };
+        document.querySelectorAll('.faq-toggle').forEach(btn => {
+            btn.onclick = () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('span');
+                content.classList.toggle('hidden');
+                icon.textContent = content.classList.contains('hidden') ? '+' : '−';
+            };
+        });
+    </script>
+</body>
+</html> 
