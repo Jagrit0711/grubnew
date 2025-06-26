@@ -1,151 +1,357 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1or0 Grub Demo - Code for Junk Food!</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'cute': ['Fredoka', 'sans-serif']
-                    },
-                    colors: {
-                        'junk-orange': '#FF6B35',
-                        'junk-yellow': '#FFD23F',
-                        'junk-red': '#FF4B4B',
-                        'junk-green': '#4CAF50',
-                        'reg-bg': '#F6E6FF'
-                    }
-                }
+    <style>
+        body {
+            background: #f8fafc;
+            font-family: 'Fredoka', Arial, sans-serif;
+            animation: bgwiggle 8s infinite alternate;
+        }
+        @keyframes bgwiggle {
+            0% { background-color: #f8fafc; }
+            100% { background-color: #fffbe7; }
+        }
+        .nvbar {
+            background: #fff;
+            box-shadow: 0 2px 8px #eee;
+           
+        }
+        
+        .nvtitle {
+            color: #FF6B35;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-left: 0.5rem;
+            text-shadow: 2px 2px 0 #fffbe7;
+        }
+        .nvlink {
+            color: #444;
+            padding: 0 0.75rem;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: color 0.2s, background 0.2s;
+        }
+        .nvlink:hover {
+            color: #fff;
+            background: #FF6B35;
+            border-radius: 0.5rem;
+        }
+        .bigtitle {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1rem;
+            transform: rotate(-2deg);
+            animation: titlepop 3s infinite alternate;
+        }
+        @keyframes titlepop {
+            0% { transform: rotate(-2deg) scale(1); }
+            100% { transform: rotate(2deg) scale(1.05); }
+        }
+        .smdesc {
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .steps {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .step {
+            background: #f3f4f6;
+            padding: 2.5rem 2rem 2rem 2.5rem;
+            border-radius: 1.2rem 2.2rem 1.5rem 1rem;
+            text-align: center;
+            font-size: 1.3rem;
+            box-shadow: 0 2px 8px #eee;
+            margin-bottom: 1rem;
+            border: 2px dashed #FF6B35;
+            outline: 3px solid #FFD23F;
+            min-width: 180px;
+            max-width: 220px;
+            transform: rotate(-3deg) scale(1.01);
+            transition: transform 0.2s, box-shadow 0.2s;
+            animation: stepwiggle 2.5s infinite alternate;
+        }
+        .step:nth-child(2) {
+            transform: rotate(4deg) scale(1.03);
+            background: #fffbe7;
+            border-color: #FF4B4B;
+            outline-color: #FF6B35;
+            animation-delay: 0.5s;
+        }
+        .step:nth-child(3) {
+            transform: rotate(-5deg) scale(0.98);
+            background: #ffe3e3;
+            border-color: #FFD23F;
+            outline-color: #FF4B4B;
+            animation-delay: 1s;
+        }
+        @keyframes stepwiggle {
+            0% { box-shadow: 0 2px 8px #eee; }
+            100% { box-shadow: 0 8px 24px #ffd23f55; }
+        }
+        .step:hover {
+            transform: scale(1.08) rotate(-2deg);
+            box-shadow: 0 8px 32px #ff6b3555;
+        }
+        /* Generic meal cards */
+        .meals {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .meal {
+            border-top: 4px solid #FF6B35;
+            background: #fff;
+            padding: 2rem 1.5rem 2.5rem 2.2rem;
+            border-radius: 1.5rem 1rem 2rem 1.2rem;
+            text-align: center;
+            box-shadow: 0 2px 8px #eee;
+            margin-bottom: 1rem;
+            display: inline-block;
+            width: 220px;
+            min-height: 220px;
+            border: 2px solid #FFD23F;
+            outline: 2px dashed #FF4B4B;
+            transform: rotate(-2deg) scale(1.01);
+            transition: transform 0.2s, box-shadow 0.2s;
+            animation: mealwiggle 2.2s infinite alternate;
+        }
+        .meal:nth-child(2) {
+            border-top: 4px solid #FFD23F;
+            outline-color: #FF6B35;
+            transform: rotate(3deg) scale(1.04);
+            animation-delay: 0.7s;
+        }
+        .meal:nth-child(3) {
+            border-top: 4px solid #FF4B4B;
+            outline-color: #FFD23F;
+            transform: rotate(-4deg) scale(0.97);
+            animation-delay: 1.2s;
+        }
+        @keyframes mealwiggle {
+            0% { box-shadow: 0 2px 8px #eee; }
+            100% { box-shadow: 0 8px 24px #ff4b4b55; }
+        }
+        .meal:hover {
+            transform: scale(1.09) rotate(2deg);
+            box-shadow: 0 8px 32px #ffd23f55;
+        }
+        .fqbtn {
+            width: 100%;
+            text-align: left;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 1rem;
+            font-size: 1.3rem;
+            box-shadow: 0 2px 8px #eee;
+            margin-bottom: 1rem;
+            border: none;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+            animation: faqbounce 2.5s infinite alternate;
+        }
+        @keyframes faqbounce {
+            0% { transform: scale(1) rotate(-1deg); }
+            100% { transform: scale(1.04) rotate(2deg); }
+        }
+        .fqbtn:hover {
+            background: #FF6B35;
+            color: #fff;
+            transform: scale(1.07) rotate(-2deg);
+        }
+        .fqans {
+            display: none;
+            padding: 1.5rem;
+            font-size: 1.1rem;
+        }
+        .fqbtn.open + .fqans {
+            display: block;
+        }
+        /* Responsive */
+        @media (max-width: 800px) {
+            .steps, .meals {
+                flex-direction: column;
+                align-items: center;
             }
         }
-    </script>
+    </style>
 </head>
-<body class="bg-gray-50 font-cute">
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="px-4">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center">
-                    <img src="Black_And_White_Illustrative_Kids_Club_Logo__2_-removebg-preview.png" alt="1or0 Logo" class="h-12 w-12">
-                    <span class="text-2xl font-bold text-junk-orange ml-2">1or0 Grub</span>
+<body>
+    <div class="nvbar">
+        <div style="padding: 1rem; display: flex; justify-content: space-between; align-items: center; border:0;">
+            <div style="display: flex; align-items: center; border:0;">
+                <div style="display:inline-block;background:none;border:none;padding:0;margin:0;">
+                    <img src="Black_And_White_Illustrative_Kids_Club_Logo__2_-removebg-preview.png" alt="1or0 Logo" style="height: 48px; width: 48px; border-radius:0; border:0; margin:0; padding:0; display:block;" />
                 </div>
-                <div class="hidden md:block">
-                    <a href="#home" class="text-gray-700 px-3 text-lg">Home</a>
-                    <a href="#how-it-works" class="text-gray-700 px-3 text-lg">How It Works</a>
-                    <a href="#meals" class="text-gray-700 px-3 text-lg">Meals</a>
-                    <a href="#faq" class="text-gray-700 px-3 text-lg">FAQ</a>
-                </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-2xl">☰</button>
-                </div>
+                <span class="nvtitle" style="color: #FF6B35; font-size: 2rem; font-weight: bold; margin-left: 0.5rem; background:none; border:none;">1or0 Grub</span>
             </div>
-            <div id="mobile-menu" class="hidden md:hidden">
-                <a href="#home" class="block text-lg">Home</a>
-                <a href="#how-it-works" class="block text-lg">How It Works</a>
-                <a href="#meals" class="block text-lg">Meals</a>
-                <a href="#register" class="block text-lg">Register</a>
-                <a href="#faq" class="block text-lg">FAQ</a>
+            <div style="display: flex; border:0; gap: 1rem;" id="navlinksdesk">
+                <a href="#home" class="nvlink">Home</a>
+                <a href="#how-it-works" class="nvlink">How It Works</a>
+                <a href="#meals" class="nvlink">Meals</a>
+                <a href="#faq" class="nvlink">FAQ</a>
             </div>
+            <div id="mobmenubtn" style="font-size: 2rem; cursor: pointer; border:0; background:none; display:none;">☰</div>
         </div>
-    </nav>
-    <section id="home" class="bg-gradient-to-br from-junk-orange to-junk-red text-white py-24">
-        <div>
-            <div class="flex items-center justify-center mb-8">
-                <img src="flag-standalone.png" alt="Hack Club Flag" class="h-20 w-20 mr-4" style="transform: rotate(-18deg);" />
-                <h1 class="text-5xl md:text-7xl font-bold">🍕 Code for Junk Food! 🍕</h1>
+        <div id="mobmenu" style="display: none; border:0; flex-direction:column; gap:0.5rem; background:#fff; padding:1rem;">
+            <div id="breadcrumb" style="font-size:1rem; color:#FF6B35; margin-bottom:1rem; display:none;"></div>
+            <a href="#home" class="nvlink">Home</a>
+            <a href="#how-it-works" class="nvlink">How It Works</a>
+            <a href="#meals" class="nvlink">Meals</a>
+            <a href="#faq" class="nvlink">FAQ</a>
+        </div>
+    </div>
+    <div id="home" style="background: linear-gradient(135deg, #FF6B35, #FF4B4B); color: #fff; padding: 6rem 0;">
+        <div style="text-align: center;">
+            <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                <img src="flag-standalone.png" alt="Hack Club Flag" style="height: 80px; width: 80px; margin-right: 1.5rem; transform: rotate(-18deg);" />
+                <h1 style="font-size: 3rem; font-weight: bold;">🍕 Code for Junk Food! 🍕</h1>
             </div>
-            <p class="text-2xl mb-4 text-center">Hey Bal Bharatians! Build websites, get junk food. Simple.</p>
-            <p class="text-xl mb-8 text-center">Presented by 1or0 Hack Club</p>
-            <div class="mt-8 flex justify-center">
+            <p style="font-size: 1.5rem; margin-bottom: 1rem;">Hey Bal Bharatians! Build websites, get junk food. Simple.</p>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Presented by 1or0 Hack Club</p>
+            <div style="margin-top: 2rem;">
                 <div data-fillout-id="tJqTm2PGcKus" data-fillout-embed-type="popup" data-fillout-button-text="Register Now" data-fillout-dynamic-resize data-fillout-button-color="#FF6900" data-fillout-button-size="large" data-fillout-inherit-parameters data-fillout-popup-size="medium"></div><script src="https://server.fillout.com/embed/v1/"></script>
             </div>
-
-            
         </div>
-    </section>
-    <section id="how-it-works" class="py-16 bg-white">
-        <div>
-            <h2 class="text-4xl font-bold text-center mb-4">How Does It Work?</h2>
-            <p class="text-2xl text-center mb-10">1. Make a site. 2. Show us. 3. Get food money.</p>
-            <div class="flex flex-col md:flex-row justify-center gap-8">
-                <div class="bg-gray-100 p-12 rounded-xl text-center text-2xl shadow-md mb-6 md:mb-0">💻<div class="mt-4 font-bold">Build a Website</div></div>
-                <div class="bg-gray-100 p-12 rounded-xl text-center text-2xl shadow-md mb-6 md:mb-0">🚀<div class="mt-4 font-bold">Publish & Submit</div></div>
-                <div class="bg-gray-100 p-12 rounded-xl text-center text-2xl shadow-md">🍔<div class="mt-4 font-bold">Get Junk Food!</div></div>
-            </div>
-        </div>
-    </section>
-    <section id="meals" class="py-16 bg-white">
-        <div>
-            <h2 class="text-4xl font-bold text-center mb-4">Pack Your Lunch!</h2>
-            <p class="text-2xl text-center mb-10">Pick a meal, code for it, eat it.</p>
-            <div class="flex flex-col md:flex-row justify-center gap-8">
-                <div class="border-t-4 border-junk-orange bg-white p-12 rounded-xl text-center shadow-lg hover:bg-orange-50 hover:scale-105 transition-all duration-200 cursor-pointer">
-                    <div class="text-6xl mb-4">🥪</div>
-                    <div class="font-bold text-2xl mb-2">Basic Meal</div>
-                    <div class="text-junk-orange font-bold text-xl mb-2">$6</div>
-                    <div class="mb-2 text-lg">2 features</div>
+    </div>
+    <div id="how-it-works" style="padding: 4rem 0; background: #fff;">
+        <div style="margin:0;padding:0;">
+            <div style="font-size:2.5rem;font-weight:bold;text-align:center;margin-bottom:1rem;color:black;background:none;border:none;">How Does It Work?</div>
+            <div style="font-size:1.3rem;text-align:center;margin-bottom:2rem;color:#222;background:none;">1. Make a site. 2. Show us. 3. Get food money.</div>
+            <div class="steps">
+                <div class="step">
+                    <span style="font-size:2.2rem;">💻</span>
+                    <div style="margin-top:1rem;font-weight:bold;font-size:1.1em;color:#111;background:none;">Build a Website</div>
                 </div>
-                <div class="border-t-4 border-junk-yellow bg-white p-12 rounded-xl text-center shadow-lg hover:bg-yellow-50 hover:scale-105 transition-all duration-200 cursor-pointer">
-                    <div class="text-6xl mb-4">🥤</div>
-                    <div class="font-bold text-2xl mb-2">Refreshment Combo</div>
-                    <div class="text-junk-orange font-bold text-xl mb-2">$8</div>
-                    <div class="mb-2 text-lg">4 features</div>
+                <div class="step">
+                    <span style="font-size:2.2rem;">🚀</span>
+                    <div style="margin-top:1rem;font-weight:bold;font-size:1.1em;color:#111;background:none;">Publish & Submit</div>
                 </div>
-                <div class="border-t-4 border-junk-red bg-white p-12 rounded-xl text-center shadow-lg hover:bg-red-50 hover:scale-105 transition-all duration-200 cursor-pointer">
-                    <div class="text-6xl mb-4">🍟</div>
-                    <div class="font-bold text-2xl mb-2">Full Combo Meal</div>
-                    <div class="text-junk-orange font-bold text-xl mb-2">$10</div>
-                    <div class="mb-2 text-lg">6+ features</div>
+                <div class="step">
+                    <span style="font-size:2.2rem;">🍔</span>
+                    <div style="margin-top:1rem;font-weight:bold;font-size:1.1em;color:#111;background:none;">Get Junk Food!</div>
                 </div>
             </div>
         </div>
-    </section>
-    <section id="submit" class="py-16 bg-junk-green bg-opacity-10">
-        <div class="text-center">
-            <h2 class="text-4xl font-bold text-junk-green mb-4">Project Submission</h2>
-            <p class="text-xl mb-4">Done coding? Submit your project at the link below.<br><span class="text-junk-green font-bold">Workshop ID: 1or0G</span></p>
-            <a href="https://forms.hackclub.com/grub" target="_blank" class="inline-block bg-junk-green text-white px-10 py-4 rounded-xl font-bold text-xl shadow hover:bg-green-700 transition-all">Submit Project</a>
-        </div>
-    </section>
-    <section id="faq" class="py-16 bg-gray-50">
-        <div>
-            <h2 class="text-4xl font-bold text-center mb-4">FAQ</h2>
-            <div class="max-w-2xl mx-auto">
-                <div class="mb-6">
-                    <button class="faq-toggle w-full text-left bg-white p-8 rounded-xl text-2xl shadow hover:bg-gray-100 transition-all">What is 1or0 Hack Club? <span class="float-right text-3xl">+</span></button>
-                    <div class="faq-content hidden p-6 text-xl">1or0 Hack Club is the official Hack Club of Bal Bharati Public School Rohini (BBPSRH). Student-led. Project-driven. Built to break limits.</div>
+    </div>
+    <div id="meals" style="padding: 4rem 0; background: #fff;">
+        <div style="margin:0;padding:0;">
+            <div style="font-size:2.5rem;font-weight:bold;text-align:center;margin-bottom:1rem;color:black;background:none;border:none;">Pack Your Lunch!</div>
+            <div style="font-size:1.3rem;text-align:center;margin-bottom:2rem;color:#222;background:none;">Pick a meal, code for it, eat it.</div>
+            <div class="meals">
+                <div class="meal">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🥪</div>
+                    <div style="font-weight: bold; font-size: 1.3rem; margin-bottom: 0.5rem;">Basic Meal</div>
+                    <div style="color: #FF6B35; font-weight: bold; font-size: 1.1rem; margin-bottom: 0.5rem;">$6</div>
+                    <div style="margin-bottom: 0.5rem; font-size: 1rem;">2 features</div>
                 </div>
-                <div class="mb-6">
-                    <button class="faq-toggle w-full text-left bg-white p-8 rounded-xl text-2xl shadow hover:bg-gray-100 transition-all">What is Tailwind CSS? <span class="float-right text-3xl">+</span></button>
-                    <div class="faq-content hidden p-6 text-xl">It's a CSS thing that makes sites look cool without writing much CSS.</div>
+                <div class="meal">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🥤</div>
+                    <div style="font-weight: bold; font-size: 1.3rem; margin-bottom: 0.5rem;">Refreshment Combo</div>
+                    <div style="color: #FF6B35; font-weight: bold; font-size: 1.1rem; margin-bottom: 0.5rem;">$8</div>
+                    <div style="margin-bottom: 0.5rem; font-size: 1rem;">4 features</div>
                 </div>
-                <div class="mb-6">
-                    <button class="faq-toggle w-full text-left bg-white p-8 rounded-xl text-2xl shadow hover:bg-gray-100 transition-all">Can I use CSS? <span class="float-right text-3xl">+</span></button>
-                    <div class="faq-content hidden p-6 text-xl">Just use Tailwind. If you really need CSS, go for it.</div>
-                </div>
-                <div class="mb-6">
-                    <button class="faq-toggle w-full text-left bg-white p-8 rounded-xl text-2xl shadow hover:bg-gray-100 transition-all">What can I buy? <span class="float-right text-3xl">+</span></button>
-                    <div class="faq-content hidden p-6 text-xl">Any junk food. Seriously.</div>
+                <div class="meal">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🍟</div>
+                    <div style="font-weight: bold; font-size: 1.3rem; margin-bottom: 0.5rem;">Full Combo Meal</div>
+                    <div style="color: #FF6B35; font-weight: bold; font-size: 1.1rem; margin-bottom: 0.5rem;">$10</div>
+                    <div style="margin-bottom: 0.5rem; font-size: 1rem;">6+ features</div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+    <div id="submit" style="padding: 4rem 0; background: #4CAF50; background: rgba(76,175,80,0.1);">
+        <div style="text-align: center; border:0; background:none;">
+            <div class="bigtitle" style="color: #4CAF50; background:none; border:none;">Project Submission</div>
+            <div style="font-size: 1.1rem; margin-bottom: 1rem; background:none; border:0;">Done coding? Submit your project at the link below.<br><span style="color: #4CAF50; font-weight: bold; background:none; border:none;">Workshop ID: 1or0G</span></div>
+            <div style="display:inline-block;background:none;border:none;padding:0;margin:0;">
+                <a href="https://forms.hackclub.com/grub" target="_blank" style="display: inline-block; background: #4CAF50; color: #fff; padding: 1rem 2.5rem; border-radius: 1rem; font-weight: bold; font-size: 1.1rem; box-shadow: 0 2px 8px #eee; text-decoration: none; border:0;">Submit Project</a>
+            </div>
+        </div>
+    </div>
+    <div id="faq" style="padding: 4rem 0; background: #f8fafc;">
+        <div>
+            <div class="bigtitle">FAQ</div>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <div style="margin-bottom: 1.5rem;">
+                    <button class="fqbtn">What is 1or0 Hack Club? <span style="float: right; font-size: 2rem;">+</span></button>
+                    <div class="fqans">1or0 Hack Club is the official Hack Club of Bal Bharati Public School Rohini (BBPSRH). Student-led. Project-driven. Built to break limits.</div>
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <button class="fqbtn">What is Tailwind CSS? <span style="float: right; font-size: 2rem;">+</span></button>
+                    <div class="fqans">It's a CSS thing that makes sites look cool without writing much CSS.</div>
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <button class="fqbtn">Can I use CSS?  <span style="float: right; font-size: 2rem;">+</span></button>
+                    <div class="fqans">Just use Tailwind. If you really need CSS, go for it.</div>
+                </div> 
+                <div style="margin-bottom: 1.5rem;">
+                    <button class="fqbtn">What can I buy? <span style="float: right; font-size: 2rem;">+</span></button>
+                    <div class="fqans">Any junk food. Seriously.</div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if(mobileMenuButton) mobileMenuButton.onclick = () => { mobileMenu.classList.toggle('hidden'); };
-        document.querySelectorAll('.faq-toggle').forEach(btn => {
-            btn.onclick = () => {
-                const content = btn.nextElementSibling;
-                const icon = btn.querySelector('span');
-                content.classList.toggle('hidden');
-                icon.textContent = content.classList.contains('hidden') ? '+' : '−';
+      
+        function checkMobileNav() {
+            var mobBtn = document.getElementById('mobmenubtn');
+            var navLinksDesk = document.getElementById('navlinksdesk');
+            if(window.innerWidth < 700){
+                mobBtn.style.display = 'block';
+                navLinksDesk.style.display = 'none';
+            } else {
+                mobBtn.style.display = 'none';
+                navLinksDesk.style.display = 'flex';
+                document.getElementById('mobmenu').style.display = 'none';
+            }
+        }
+        window.addEventListener('resize', checkMobileNav);
+        checkMobileNav();
+        var messyMenuButton = document.getElementById('mobmenubtn');
+        messyMenuButton.onclick = function() {
+            var messyMenuThing = document.getElementById('mobmenu');
+            if(messyMenuThing.style.display === 'block') messyMenuThing.style.display = 'none';
+            else messyMenuThing.style.display = 'block';
+        };
+        function updateBreadcrumb() {
+            var bc = document.getElementById('breadcrumb');
+            var hash = window.location.hash || '#home';
+            var map = {'#home':'Home','#how-it-works':'How It Works','#meals':'Meals','#faq':'FAQ'};
+            if(window.innerWidth < 700){
+                bc.style.display = 'block';
+                bc.textContent = 'You are here: ' + (map[hash]||'Home');
+            } else {        
+                bc.style.display = 'none';
+            }
+           
+
+        }
+        
+        window.addEventListener('hashchange', updateBreadcrumb);
+        window.addEventListener('resize', updateBreadcrumb);
+        updateBreadcrumb();
+        
+        var faqThingies = document.querySelectorAll('.fqbtn');
+        for(var i=0;i<faqThingies.length;i++){
+            faqThingies[i].onclick=function(){
+                this.classList.toggle('open');
+                var openOrNot = this.querySelector('span');
+                if(this.classList.contains('open')){openOrNot.textContent='−';}else{openOrNot.textContent='+';}
             };
-        });
+        }
     </script>
+    <footer style="background:#222;color:#fff;text-align:center;padding:1.5rem 0;font-size:1.1rem;margin-top:2rem;letter-spacing:1px;">
+        Made by Jagrit for demo grub workshop :P
+        <!-- this might look non ai ig lol jk no offense -->
+    </footer>
 </body>
 </html> 
